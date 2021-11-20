@@ -1,30 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sweepstakes.DAL.Interfaces;
+using Sweepstakes.DAL.Repositories;
 
 namespace Sweepstakes.DAL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        //private UserRepository userRepository;
+        private BetRepository betRepository;
 
-        //private string Conection { get; set; }
+        public string Conection { get; private set; }
 
-        //public UnitOfWork(string Conection)
-        //{
-        //    this.Conection = Conection;
-        //}
+        public UnitOfWork(string Conection)
+        {
+            this.Conection = Conection;
+        }
 
-        //public IUserRepository Users
-        //{
-        //    get
-        //    {
-        //        if (userRepository == null)
-        //            userRepository = new UserRepository(Conection);
-        //        return userRepository;
-        //    }
-        //}
+        public IBetRepository Bet
+        {
+            get
+            {
+                if (betRepository == null)
+                    betRepository = new BetRepository(Conection);
+                return betRepository;
+            }
+        }
     }
 }
