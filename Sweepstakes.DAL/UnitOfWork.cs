@@ -6,6 +6,7 @@ namespace Sweepstakes.DAL
     public class UnitOfWork : IUnitOfWork
     {
         private BetRepository betRepository;
+        private CurrencyRepository currencyRepository;
 
         public string Conection { get; private set; }
 
@@ -21,6 +22,16 @@ namespace Sweepstakes.DAL
                 if (betRepository == null)
                     betRepository = new BetRepository(Conection);
                 return betRepository;
+            }
+        }
+        
+        public CurrencyRepository CurrencyRepository
+        {
+            get
+            {
+                if (currencyRepository == null)
+                    currencyRepository = new CurrencyRepository(Conection);
+                return currencyRepository;
             }
         }
     }
