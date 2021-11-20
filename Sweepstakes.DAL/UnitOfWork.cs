@@ -25,7 +25,7 @@ namespace Sweepstakes.DAL
             }
         }
         
-        public CurrencyRepository CurrencyRepository
+        public ICurrencyRepository Currency
         {
             get
             {
