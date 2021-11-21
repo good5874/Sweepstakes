@@ -11,5 +11,6 @@ namespace Sweepstakes.DAL
         IRoleRepository Role { get; }
         ISportRepository Sport { get; }
         ITeamRepository Team { get; }
+        IUserRepository User { get; }
     }
 }
