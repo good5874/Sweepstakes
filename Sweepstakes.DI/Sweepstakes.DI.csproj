@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sweepstakes.BLL\Sweepstakes.BLL.csproj" />
+    <ProjectReference Include="..\Sweepstakes.DAL\Sweepstakes.DAL.csproj" />
+  </ItemGroup>
+
+</Project>
