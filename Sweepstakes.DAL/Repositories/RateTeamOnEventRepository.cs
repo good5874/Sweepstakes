@@ -1,4 +1,5 @@
-﻿using Sweepstakes.Common.Models;
+﻿using Microsoft.Extensions.Configuration;
+using Sweepstakes.Common.Models;
 using Sweepstakes.DAL.Abstracts;
 using Sweepstakes.DAL.Interfaces;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ namespace Sweepstakes.DAL.Repositories
 {
     public class RateTeamOnEventRepository : AbstractRepository<RateTeamOnEvent>, IRateTeamOnEventRepository
     {
-        public RateTeamOnEventRepository(string conection) : base(conection) { }
+        public RateTeamOnEventRepository(IConfiguration configuration) : base(configuration) { }
 
         public void Create(RateTeamOnEvent item)
         {
