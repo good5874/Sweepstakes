@@ -5,14 +5,14 @@ namespace Sweepstakes.Common.Models
     [Table("User")]
     public class User
     {
-        public User(int Id, string FullName, string Phone, string Email, string Password, int RoleId)
+        public User(int id, string fullName, string phone, string email, string password, int roleId)
         {
-            this.Id = Id;
-            this.FullName = FullName;
-            this.Phone = Phone;
-            this.Email = Email;
-            this.Password = Password;
-            this.RoleId = RoleId;
+            Id = id;
+            FullName = fullName;
+            Phone = phone;
+            Email = email;
+            Password = password;
+            RoleId = roleId;
         }
 
         public int Id { get; set; }

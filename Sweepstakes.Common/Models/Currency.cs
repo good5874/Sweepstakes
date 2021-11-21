@@ -5,10 +5,10 @@ namespace Sweepstakes.Common.Models
     [Table("Currency")]
     public class Currency
     {
-        public Currency(int Id, string Name)
+        public Currency(int id, string name)
         {
-            this.Id = Id;
-            this.Name = Name;
+            Id = id;
+            Name = name;
         }
 
         public int Id { get; set; }
