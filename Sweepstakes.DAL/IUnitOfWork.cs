@@ -6,5 +6,8 @@ namespace Sweepstakes.DAL
     {
         IBetRepository Bet { get; }
         ICurrencyRepository Currency { get; }
+        IEventRepository Event { get; }
+        IRateTeamOnEventRepository RateTeamOnEvent { get; }
+        IRoleRepository Role { get; }
     }
 }

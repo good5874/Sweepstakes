@@ -9,6 +9,7 @@ namespace Sweepstakes.DAL
         private CurrencyRepository currencyRepository;
         private EventRepository eventRepository;
         private RateTeamOnEventRepository rateTeamOnEventRepository;
+        private RoleRepository roleRepository;
 
         public string Conection { get; private set; }
 
@@ -54,6 +55,16 @@ namespace Sweepstakes.DAL
                 if (rateTeamOnEventRepository == null)
                     rateTeamOnEventRepository = new RateTeamOnEventRepository(Conection);
                 return rateTeamOnEventRepository;
+            }
+        }
+        
+        public IRoleRepository Role
+        {
+            get
+            {
+                if (roleRepository == null)
+                    roleRepository = new RoleRepository(Conection);
+                return roleRepository;
             }
         }
     }
