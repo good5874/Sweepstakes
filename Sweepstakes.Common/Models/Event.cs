@@ -7,11 +7,6 @@ namespace Sweepstakes.Common.Models
     [Table("Event")]
     public class Event
     {
-        public Event()
-        {
-
-        }
-
         public Event(int Id, int Status, DateTime CreatedDate, int Sportid, int WinningTeamId)
         {
             this.Id = Id;

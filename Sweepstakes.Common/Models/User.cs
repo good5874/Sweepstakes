@@ -5,16 +5,6 @@ namespace Sweepstakes.Common.Models
     [Table("User")]
     public class User
     {
-        public User()
-        {
-
-        }
-
-        public User(int Id)
-        {
-            this.Id = Id;
-        }
-
         public User(int Id, string FullName, string Phone, string Email, string Password, int RoleId)
         {
             this.Id = Id;

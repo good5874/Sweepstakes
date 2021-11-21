@@ -7,11 +7,6 @@ namespace Sweepstakes.Common.Models
     [Table("Bet")]
     public class Bet
     {
-        public Bet()
-        {
-
-        }
-
         public Bet(int Id, decimal Price, int CurrencyId, int Status, DateTime CreatedDate, int UserId, int EventId, int TeamId)
         {
             this.Id = Id;

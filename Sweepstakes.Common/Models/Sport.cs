@@ -5,11 +5,6 @@ namespace Sweepstakes.Common.Models
     [Table("Sport")]
     public class Sport
     {
-        public Sport()
-        {
-
-        }
-
         public Sport(int Id, string Name)
         {
             this.Id = Id;
