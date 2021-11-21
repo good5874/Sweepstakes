@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Sweepstakes.DAL.Abstracts
 {
@@ -16,42 +17,44 @@ namespace Sweepstakes.DAL.Abstracts
 
         public IEnumerable<T> ExecuteSqlQuery(string sqlQuery)
         {
+            List<T> items = new();
+
             using (SqlConnection con = new SqlConnection(connection))
             {
-                List<T> items = new List<T>();
-                DataTable table = new DataTable();
-
-                SqlDataAdapter adapter = new SqlDataAdapter();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                command.CommandType = CommandType.Text;
-                adapter.SelectCommand = command;
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
 
-                adapter.Fill(table);
-                foreach (DataRow row in table.Rows)
+                while (reader.Read())
                 {
-                    T item = (T)Activator.CreateInstance(typeof(T), row.ItemArray);
+                    object[] rows = new object[reader.FieldCount];
+                    reader.GetValues(rows);
+                    T item = (T)Activator.CreateInstance(typeof(T), rows);
                     items.Add(item);
                 }
-                return items;
+
+                con.Close();
             }
+            return items;
         }
 
         public T ExecuteScalarSqlQuery(string sqlQuery)
         {
             using (SqlConnection con = new SqlConnection(connection))
             {
-                DataTable table = new DataTable();
-
-                SqlDataAdapter adapter = new SqlDataAdapter();
                 SqlCommand command = new SqlCommand(sqlQuery, con);
-                command.CommandType = CommandType.Text;
-                adapter.SelectCommand = command;
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
 
-                adapter.Fill(table);
+                object[] rows = new object[reader.FieldCount];
+                reader.Read();
+                reader.GetValues(rows);
 
-                if (table.Rows.Count > 0)
+                con.Close();
+
+                if (rows.Count() > 0)
                 {
-                    T item = (T)Activator.CreateInstance(typeof(T), table.Rows[0].ItemArray);
+                    T item = (T)Activator.CreateInstance(typeof(T), rows);
                     return item;
                 }
                 else
