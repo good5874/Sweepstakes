@@ -64,5 +64,16 @@ namespace Sweepstakes.DAL.Abstracts
                 }
             }
         }
+        
+        public void ExecuteSqlQueryNoResult(string sqlQuery)
+        {
+            using (SqlConnection con = new SqlConnection(connection))
+            {
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                con.Close();
+            }
+        }
     }
 }
