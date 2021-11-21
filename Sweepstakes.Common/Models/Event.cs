@@ -7,7 +7,7 @@ namespace Sweepstakes.Common.Models
     [Table("Event")]
     public class Event
     {
-        public Event(int id, StatusEventEnum status, DateTime createdDate, int sportid, int winningTeamId)
+        public Event(int id, StatusEvent status, DateTime createdDate, int sportid, int winningTeamId)
         {
             Id = id;
             Status = status;
@@ -17,7 +17,7 @@ namespace Sweepstakes.Common.Models
         }
 
         public int Id { get; set; }
-        public StatusEventEnum Status { get; set; }
+        public StatusEvent Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public int Sportid { get; set; }
         public int WinningTeamId { get; set; }
