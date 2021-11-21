@@ -7,6 +7,12 @@ namespace Sweepstakes.DAL
     {
         private BetRepository betRepository;
         private CurrencyRepository currencyRepository;
+        private EventRepository eventRepository;
+        private RateTeamOnEventRepository rateTeamOnEventRepository;
+        private RoleRepository roleRepository;
+        private SportRepository sportRepository;
+        private TeamRepository teamRepository;
+        private UserRepository userRepository;
 
         public string Conection { get; private set; }
 
@@ -25,13 +31,73 @@ namespace Sweepstakes.DAL
             }
         }
         
-        public CurrencyRepository CurrencyRepository
+        public ICurrencyRepository Currency
         {
             get
             {
                 if (currencyRepository == null)
                     currencyRepository = new CurrencyRepository(Conection);
                 return currencyRepository;
+            }
+        }
+        
+        public IEventRepository Event
+        {
+            get
+            {
+                if (eventRepository == null)
+                    eventRepository = new EventRepository(Conection);
+                return eventRepository;
+            }
+        }
+        
+        public IRateTeamOnEventRepository RateTeamOnEvent
+        {
+            get
+            {
+                if (rateTeamOnEventRepository == null)
+                    rateTeamOnEventRepository = new RateTeamOnEventRepository(Conection);
+                return rateTeamOnEventRepository;
+            }
+        }
+        
+        public IRoleRepository Role
+        {
+            get
+            {
+                if (roleRepository == null)
+                    roleRepository = new RoleRepository(Conection);
+                return roleRepository;
+            }
+        }
+        
+        public ISportRepository Sport
+        {
+            get
+            {
+                if (sportRepository == null)
+                    sportRepository = new SportRepository(Conection);
+                return sportRepository;
+            }
+        }
+        
+        public ITeamRepository Team
+        {
+            get
+            {
+                if (teamRepository == null)
+                    teamRepository = new TeamRepository(Conection);
+                return teamRepository;
+            }
+        }
+        
+        public IUserRepository User
+        {
+            get
+            {
+                if (userRepository == null)
+                    userRepository = new UserRepository(Conection);
+                return userRepository;
             }
         }
     }
