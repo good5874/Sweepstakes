@@ -11,6 +11,7 @@ namespace Sweepstakes.DAL
         private RateTeamOnEventRepository rateTeamOnEventRepository;
         private RoleRepository roleRepository;
         private SportRepository sportRepository;
+        private TeamRepository teamRepository;
 
         public string Conection { get; private set; }
 
@@ -76,6 +77,16 @@ namespace Sweepstakes.DAL
                 if (sportRepository == null)
                     sportRepository = new SportRepository(Conection);
                 return sportRepository;
+            }
+        }
+        
+        public ITeamRepository Team
+        {
+            get
+            {
+                if (teamRepository == null)
+                    teamRepository = new TeamRepository(Conection);
+                return teamRepository;
             }
         }
     }

@@ -10,5 +10,6 @@ namespace Sweepstakes.DAL
         IRateTeamOnEventRepository RateTeamOnEvent { get; }
         IRoleRepository Role { get; }
         ISportRepository Sport { get; }
+        ITeamRepository Team { get; }
     }
 }
