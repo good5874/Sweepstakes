@@ -11,7 +11,7 @@ namespace Sweepstakes.DAL.Repositories
 
         public User Get(string email)
         {
-            return ExecuteScalarSqlQuery($"SELECT * FROM User WHERE (Email = '{email}')");
+            return ExecuteScalarSqlQuery($"SELECT * FROM dbo.[User] WHERE (Email = '{email}')");
         }
     }
 }
