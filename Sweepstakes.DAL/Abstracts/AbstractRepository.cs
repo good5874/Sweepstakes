@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,9 +11,9 @@ namespace Sweepstakes.DAL.Abstracts
     {
         private string connection { get; set; }
 
-        public AbstractRepository(string conection)
+        public AbstractRepository(IConfiguration configuration)
         {
-            this.connection = conection;
+            connection = configuration.GetConnectionString("DefaultConnection");
         }
 
         public IEnumerable<T> ExecuteSqlQuery(string sqlQuery)
@@ -61,6 +62,17 @@ namespace Sweepstakes.DAL.Abstracts
                 {
                     return default(T);
                 }
+            }
+        }
+        
+        public void ExecuteSqlQueryNoResult(string sqlQuery)
+        {
+            using (SqlConnection con = new SqlConnection(connection))
+            {
+                SqlCommand command = new SqlCommand(sqlQuery, con);
+                con.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                con.Close();
             }
         }
     }

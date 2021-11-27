@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,14 +10,14 @@ namespace Sweepstakes.DAL.Abstracts
     {
         private TableAttribute tableAttribute { get; set; }
 
-        public AbstractCRUDRepository(string conection) : base(conection)
+        public AbstractCRUDRepository(IConfiguration configuration) : base(configuration)
         {
             tableAttribute = Attribute.GetCustomAttribute(typeof(T), typeof(TableAttribute)) as TableAttribute;
         }
 
         public virtual IEnumerable<T> GetAll()
         {
-            return ExecuteSqlQuery($"SELECT * FROM {tableAttribute.Name}");
+            return ExecuteSqlQuery($"SELECT * FROM dbo.[{tableAttribute.Name}]");
         }
 
         public virtual void Create(T item)
@@ -31,17 +32,17 @@ namespace Sweepstakes.DAL.Abstracts
 
             var strValues = string.Join(", ", resultProp);
 
-            ExecuteScalarSqlQuery($"INSERT INTO {tableAttribute.Name} VALUES ({strValues})");
+            ExecuteSqlQueryNoResult($"INSERT INTO dbo.[{tableAttribute.Name}] VALUES ({strValues})");
         }
 
         public virtual void Delete(int id)
         {
-            ExecuteScalarSqlQuery($"DELETE FROM {tableAttribute.Name} WHERE ({typeof(T).GetProperties()[0].Name} = '{id}') ");
+            ExecuteSqlQueryNoResult($"DELETE FROM dbo.[{tableAttribute.Name}] WHERE ({typeof(T).GetProperties()[0].Name} = '{id}') ");
         }
 
         public virtual T Get(int id)
         {
-            return ExecuteScalarSqlQuery($"SELECT * FROM {tableAttribute.Name} WHERE ({typeof(T).GetProperties()[0].Name} = '{id}')");
+            return ExecuteScalarSqlQuery($"SELECT * FROM dbo.[{tableAttribute.Name}] WHERE ({typeof(T).GetProperties()[0].Name} = '{id}')");
         }
 
         public virtual void Update(T item)
@@ -56,7 +57,7 @@ namespace Sweepstakes.DAL.Abstracts
 
             var strValues = string.Join(", ", resultProp);
 
-            ExecuteScalarSqlQuery($"UPDATE {tableAttribute.Name} SET {strValues}" +
+            ExecuteSqlQueryNoResult($"UPDATE dbo.[{tableAttribute.Name}] SET {strValues}" +
                 $" WHERE ({properties[0].Name} = '{item.GetType().GetProperty(properties?[0].Name).GetValue(item, null)}')");
         }
     }

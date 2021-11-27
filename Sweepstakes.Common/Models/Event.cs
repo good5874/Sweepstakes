@@ -7,22 +7,17 @@ namespace Sweepstakes.Common.Models
     [Table("Event")]
     public class Event
     {
-        public Event()
+        public Event(int id, StatusEvent status, DateTime createdDate, int sportid, int winningTeamId)
         {
-
-        }
-
-        public Event(int Id, int Status, DateTime CreatedDate, int Sportid, int WinningTeamId)
-        {
-            this.Id = Id;
-            this.CreatedDate = CreatedDate;
-            this.Sportid = Sportid;
-            this.Status = (StatusEventEnum)Status;
-            this.WinningTeamId = WinningTeamId;
+            Id = id;
+            Status = status;
+            CreatedDate = createdDate;
+            Sportid = sportid;
+            WinningTeamId = winningTeamId;
         }
 
         public int Id { get; set; }
-        public StatusEventEnum Status { get; set; }
+        public StatusEvent Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public int Sportid { get; set; }
         public int WinningTeamId { get; set; }

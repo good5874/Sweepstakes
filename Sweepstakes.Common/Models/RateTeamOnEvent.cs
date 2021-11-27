@@ -5,16 +5,11 @@ namespace Sweepstakes.Common.Models
     [Table("RateTeamOnEvent")]
     public class RateTeamOnEvent
     {
-        public RateTeamOnEvent()
+        public RateTeamOnEvent(int eventId, int teamId, float coefficient)
         {
-
-        }
-
-        public RateTeamOnEvent(int EventId, int TeamId, float Coefficient)
-        {
-            this.EventId = EventId;
-            this.TeamId = TeamId;
-            this.Coefficient = Coefficient;
+            EventId = eventId;
+            TeamId = teamId;
+            Coefficient = coefficient;
         }
 
         public int EventId { get; set; }

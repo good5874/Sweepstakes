@@ -5,17 +5,12 @@ namespace Sweepstakes.Common.Models
     [Table("Team")]
     public class Team
     {
-        public Team()
+        public Team(int id, string name, string country, string pictureURL)
         {
-
-        }
-
-        public Team(int Id, string Name, string Country, string PictureURL)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Country = Country;
-            this.PictureURL = PictureURL;
+            Id = id;
+            Name = name;
+            Country = country;
+            PictureURL = pictureURL;
         }
 
         public int Id { get; set; }

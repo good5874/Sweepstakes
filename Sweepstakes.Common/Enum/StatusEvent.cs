@@ -1,6 +1,6 @@
 ﻿namespace Sweepstakes.Common.Enum
 {
-    public enum StatusEventEnum
+    public enum StatusEvent
     {
         Created,
         Opened,

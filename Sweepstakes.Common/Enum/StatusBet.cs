@@ -1,8 +1,9 @@
 ﻿namespace Sweepstakes.Common.Enum
 {
-    public enum StatusBetEnum
+    public enum StatusBet
     {
         Created,
+        Opened,
         Closed
     }
 }
